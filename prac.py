@@ -48,7 +48,10 @@ class Prac:
       self.log(self.data)
 
 
-  def get_variables(self, line):
+  def get_variables(self, line='user_use'):
+    if line == 'user_use':
+      return self.variables
+
     try:
       line = re.split(r'\s+', line)
       varList = []
@@ -123,10 +126,11 @@ class Prac:
 
 
   def plot_chart(self):
-      plt.figure(randint(1, 10**6))
-      plt.plot(self.x, self.y, marker='o')
-      plt.title(f"Dependence of {self.yName} on {self.xName}")
-      plt.grid()
+      if self.x and self.y:
+        plt.figure(randint(1, 10**6))
+        plt.plot(self.x, self.y, marker='o')
+        plt.title(f"Dependence of {self.yName} on {self.xName}")
+        plt.grid()
 
 
   def approximated_plot_chart(self, x, k, b):
